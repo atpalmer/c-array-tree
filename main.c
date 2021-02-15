@@ -31,11 +31,11 @@ void ArrayTree_free(ArrayTree *this) {
 }
 
 #define LEVEL_START(level)  ((1 << (level)) - 1)
+#define LEVEL_COUNT(level)  (1 << (level))
 
 void ArrayTree_print(ArrayTree *this) {
     for(int level = 0;;++level) {
-        int lcount = 1 << level;
-        for(int li = 0; li < lcount; ++li) {
+        for(int li = 0; li < LEVEL_COUNT(level); ++li) {
             int i = LEVEL_START(level) + li;
             if(i >= this->count) {
                 printf("\n");
